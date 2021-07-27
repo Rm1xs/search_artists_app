@@ -1,7 +1,7 @@
 name: search_artists_app
-description: App which search similar artists 
+description: App which search similar artists
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -14,21 +14,22 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
-  # State managment
   flutter_bloc: ^7.0.1
 
   get_it: ^3.1.0
-  # Value equality
+
   equatable: ^1.0.1
-  # Functional programming thingies
+
   dartz: ^0.8.9
-  # Remote API
+
   data_connection_checker: ^0.3.4
+
   http: ^0.12.0+3
-  # Local cache
-  shared_preferences: ^0.5.6
+
+  uuid: ^3.0.4
 
   sqflite:
+
   path:
 
 dev_dependencies:

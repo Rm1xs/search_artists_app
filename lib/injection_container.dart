@@ -13,8 +13,7 @@ import 'features/artist_trivia/presentation/bloc/artist_bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  //! Features - Number Trivia
-  // Bloc
+
   sl.registerFactory(
         () => ArtistBloc(
       concrete: sl(),
@@ -37,7 +36,6 @@ Future<void> init() async {
   sl.registerLazySingleton<ArtistRemoteDataSource>(
         () => ArtistRemoteDataSourceImpl(sl()),
   );
-
 
   //! Core
   sl.registerLazySingleton(() => InputConverter());
