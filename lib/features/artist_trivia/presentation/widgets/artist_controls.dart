@@ -24,7 +24,6 @@ class _ArtistControlsState extends State<ArtistControls> {
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
               border: OutlineInputBorder(),
-              //hintText: 'Artist',
               labelText: 'Artist'),
           onChanged: (value) {
             inputStr = value;

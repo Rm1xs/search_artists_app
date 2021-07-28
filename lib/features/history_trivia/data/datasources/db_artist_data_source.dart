@@ -1,28 +1,37 @@
-import 'package:path/path.dart';
-import 'package:search_artists_app/features/artist_trivia/domain/entities/artists.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:search_artists_app/features/artist_trivia/domain/entities/info.dart';
+import 'package:search_artists_app/features/history_trivia/data/datasources/db_provider.dart';
 
 abstract class DbArtistDataSource {
-  void addArtist(Artist artist);
+  void addArtist(Info info);
+
+  Future getArtist();
+
+  Future deleteAllArtist();
 }
 
-class DbArtistDataSourceImpl implements DbArtistDataSource {
-  @override
-  void addArtist(Artist artist) async {
-    final database = openDatabase(
-      join(await getDatabasesPath(), 'artist_database.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          'CREATE TABLE artists(id INTEGER PRIMARY KEY, name TEXT, type TEXT)',
-        );
-      },
-      version: 1,
-    );
-    final db = await database;
-    await db.insert(
+final dbProvider = DatabaseProvider.dbProvider;
+
+class DbArtistDataSourceImpl {
+  void addArtist(Info info) async {
+    final db = await dbProvider.database;
+    db?.insert('artists', info.toMap());
+  }
+
+  Future<List<Info>> getArtist() async {
+    final db = await dbProvider.database;
+    final tables = await db!.rawQuery('SELECT * FROM artists');
+
+    List<Info> artist = tables.isNotEmpty
+        ? tables.map((item) => Info.fromDatabaseJson(item)).toList()
+        : [];
+    return artist;
+  }
+
+  Future deleteAllArtist() async {
+    final db = await dbProvider.database;
+    var result = await db!.delete(
       'artists',
-      artist.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    return result;
   }
 }

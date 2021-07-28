@@ -14,19 +14,20 @@ class DatabaseProvider {
   }
 
   createDatabase() async {
-    final database = openDatabase(
-      join(await getDatabasesPath(), 'artist_database.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          'CREATE TABLE $tableName(id INTEGER PRIMARY KEY, name TEXT, type TEXT)',
-        );
-      },
-      version: 1,
-    );
+    String path = join(await getDatabasesPath(), "artist_database.db");
+
+    var database = await openDatabase(path,
+        version: 1, onCreate: initDb, onUpgrade: onUpgrade);
     return database;
   }
 
   void onUpgrade(Database database, int oldVersion, int newVersion) {
     if (newVersion > oldVersion) {}
+  }
+
+  void initDb(Database database, int version) async {
+    await database.execute(
+      'CREATE TABLE $tableName(id INTEGER PRIMARY KEY, name TEXT, type TEXT)',
+    );
   }
 }

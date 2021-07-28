@@ -38,8 +38,8 @@ class ArtistRepositoryImpl implements ArtistRepository {
       }
     } else {
       try {
-        final localTrivia = await _artistChooser();
-        return Right(localTrivia);
+        final artistTrivia = await _artistChooser();
+        return Right(artistTrivia);
       } on CacheException {
         return Left(CacheFailure());
       }
