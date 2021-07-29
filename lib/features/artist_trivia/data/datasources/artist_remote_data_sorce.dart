@@ -10,8 +10,11 @@ abstract class ArtistRemoteDataSource {
 
 class ArtistRemoteDataSourceImpl implements ArtistRemoteDataSource {
   final http.Client client;
+
   ArtistRemoteDataSourceImpl(this.client);
+
   final ArtistDbBloc artBloc = ArtistDbBloc();
+
   @override
   Future<ArtistModel> getArtist(String url) =>
       _getFromUrl('https://tastedive.com/api/similar?q=$url');
@@ -23,19 +26,15 @@ class ArtistRemoteDataSourceImpl implements ArtistRemoteDataSource {
         'Content-Type': 'application/json',
       },
     );
-
     if (response.statusCode == 200) {
       var data = ArtistModel.fromJson(json.decode(response.body));
 
-
       artBloc.deleteAll();
       data.similar.results.forEach((val) {
-
         artBloc.addArtist(val);
       });
 
       //var t = artBloc.getArtist();
-
 
       return data;
     } else {

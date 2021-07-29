@@ -4,5 +4,4 @@ import 'package:search_artists_app/features/artist_trivia/domain/entities/artist
 
 abstract class ArtistRepository {
   Future<Either<Failure, Artist>> getArtist(String name);
-
 }

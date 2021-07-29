@@ -22,7 +22,7 @@ class ArtistDbBloc {
     getArtist();
   }
 
-  deleteAll(){
+  deleteAll() {
     _artistRepository.deleteAllArtist();
   }
 

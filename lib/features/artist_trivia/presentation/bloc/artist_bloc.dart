@@ -19,7 +19,7 @@ class ArtistBloc extends Bloc<ArtistEvent, ArtistState> {
   ArtistBloc({
     required GetArtist concrete,
     required this.inputConverter,
-  })  : getConcreteArtist = concrete,
+  })   : getConcreteArtist = concrete,
         super(Empty());
 
   @override

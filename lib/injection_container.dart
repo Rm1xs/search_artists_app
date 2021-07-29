@@ -13,9 +13,8 @@ import 'features/artist_trivia/presentation/bloc/artist_bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-
   sl.registerFactory(
-        () => ArtistBloc(
+    () => ArtistBloc(
       concrete: sl(),
       inputConverter: sl(),
     ),
@@ -26,7 +25,7 @@ Future<void> init() async {
 
   // Repository
   sl.registerLazySingleton<ArtistRepository>(
-        () => ArtistRepositoryImpl(
+    () => ArtistRepositoryImpl(
       networkInfo: sl(),
       remoteDataSource: sl(),
     ),
@@ -34,7 +33,7 @@ Future<void> init() async {
 
   // Data sources
   sl.registerLazySingleton<ArtistRemoteDataSource>(
-        () => ArtistRemoteDataSourceImpl(sl()),
+    () => ArtistRemoteDataSourceImpl(sl()),
   );
 
   //! Core

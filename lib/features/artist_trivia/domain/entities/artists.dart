@@ -6,8 +6,10 @@ class Artist extends Equatable {
   Artist({
     required this.similar,
   });
+
   final Uuid id = Uuid();
   Similar similar;
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,
