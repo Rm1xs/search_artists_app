@@ -25,7 +25,7 @@ class ArtistModel extends Artist {
 
 enum Type { MUSIC }
 
-final typeValues = EnumValues({"music": Type.MUSIC});
+final EnumValues<Type> typeValues = EnumValues({"music": Type.MUSIC});
 
 class EnumValues<T> {
   Map<String, T> map;

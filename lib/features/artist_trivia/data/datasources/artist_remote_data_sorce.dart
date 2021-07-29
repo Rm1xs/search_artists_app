@@ -20,14 +20,14 @@ class ArtistRemoteDataSourceImpl implements ArtistRemoteDataSource {
       _getFromUrl('https://tastedive.com/api/similar?q=$url');
 
   Future<ArtistModel> _getFromUrl(String url) async {
-    final response = await client.get(
+    final http.Response response = await client.get(
       url,
       headers: {
         'Content-Type': 'application/json',
       },
     );
     if (response.statusCode == 200) {
-      var data = ArtistModel.fromJson(json.decode(response.body));
+      ArtistModel data = ArtistModel.fromJson(json.decode(response.body));
 
       artBloc.deleteAll();
       data.similar.results.forEach((val) {

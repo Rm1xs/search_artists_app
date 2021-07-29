@@ -31,14 +31,14 @@ class ArtistRepositoryImpl implements ArtistRepository {
   ) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteArtist = await _artistChooser();
+        final Artist remoteArtist = await _artistChooser();
         return Right(remoteArtist);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
       try {
-        final artistTrivia = await _artistChooser();
+        final Artist artistTrivia = await _artistChooser();
         return Right(artistTrivia);
       } on CacheException {
         return Left(CacheFailure());

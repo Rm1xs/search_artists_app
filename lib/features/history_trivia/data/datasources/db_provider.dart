@@ -16,7 +16,7 @@ class DatabaseProvider {
   createDatabase() async {
     String path = join(await getDatabasesPath(), "artist_database.db");
 
-    var database = await openDatabase(path,
+    Database database = await openDatabase(path,
         version: 1, onCreate: initDb, onUpgrade: onUpgrade);
     return database;
   }

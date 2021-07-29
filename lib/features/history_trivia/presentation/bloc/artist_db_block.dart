@@ -3,9 +3,9 @@ import 'package:search_artists_app/features/artist_trivia/domain/entities/info.d
 import 'package:search_artists_app/features/history_trivia/data/datasources/db_artist_data_source.dart';
 
 class ArtistDbBloc {
-  final _artistRepository = DbArtistDataSourceImpl();
+  final DbArtistDataSourceImpl _artistRepository = DbArtistDataSourceImpl();
 
-  final _artistController = StreamController<List<Info>>.broadcast();
+  final StreamController<List<Info>> _artistController = StreamController<List<Info>>.broadcast();
 
   get artists => _artistController.stream;
 

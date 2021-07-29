@@ -27,7 +27,7 @@ class ArtistBloc extends Bloc<ArtistEvent, ArtistState> {
     ArtistEvent event,
   ) async* {
     if (event is GetArtistName) {
-      final inputEither =
+      final Either<Failure, String> inputEither =
           inputConverter.stringToUnsignedInteger(event.inputString);
 
       yield* inputEither.fold(
@@ -36,7 +36,7 @@ class ArtistBloc extends Bloc<ArtistEvent, ArtistState> {
         },
         (name) async* {
           yield Loading();
-          final failureOrTrivia = await getConcreteArtist(Params(name: name));
+          final Either<Failure, Artist> failureOrTrivia = await getConcreteArtist(Params(name: name));
           yield* _eitherLoadedOrErrorState(failureOrTrivia);
         },
       );
