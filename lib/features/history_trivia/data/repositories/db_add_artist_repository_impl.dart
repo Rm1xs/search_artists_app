@@ -1,11 +1,11 @@
 import 'package:search_artists_app/features/artist_trivia/domain/entities/info.dart';
-import 'package:search_artists_app/features/history_trivia/data/datasources/db_artist_data_source.dart';
+import 'package:search_artists_app/core/datasources/db_artist_data_source.dart';
 import 'package:search_artists_app/features/history_trivia/domain/repositories/db_repository.dart';
 
-class ArtistRepositoryImpl implements DbRepository {
+class DbArtistRepositoryImpl implements DbRepository {
   final DbArtistDataSource dbArtistDataSource;
 
-  ArtistRepositoryImpl(this.dbArtistDataSource);
+  DbArtistRepositoryImpl(this.dbArtistDataSource);
 
   @override
   void addArtist(Info info) async {
@@ -18,7 +18,7 @@ class ArtistRepositoryImpl implements DbRepository {
   }
 
   @override
-  Future getAllArtist() {
+  Future<List<Info>> getAllArtist() {
     return dbArtistDataSource.getArtist();
   }
 }

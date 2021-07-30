@@ -19,7 +19,7 @@ class ArtistBloc extends Bloc<ArtistEvent, ArtistState> {
   ArtistBloc({
     required GetArtist concrete,
     required this.inputConverter,
-  })   : getConcreteArtist = concrete,
+  })  : getConcreteArtist = concrete,
         super(Empty());
 
   @override
@@ -36,7 +36,8 @@ class ArtistBloc extends Bloc<ArtistEvent, ArtistState> {
         },
         (name) async* {
           yield Loading();
-          final Either<Failure, Artist> failureOrTrivia = await getConcreteArtist(Params(name: name));
+          final Either<Failure, Artist> failureOrTrivia =
+              await getConcreteArtist(Params(name: name));
           yield* _eitherLoadedOrErrorState(failureOrTrivia);
         },
       );

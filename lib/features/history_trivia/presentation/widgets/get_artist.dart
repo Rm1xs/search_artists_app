@@ -1,34 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:search_artists_app/features/history_trivia/domain/repositories/db_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:search_artists_app/features/history_trivia/presentation/bloc/db_artist_bloc.dart';
+import 'package:search_artists_app/features/history_trivia/presentation/bloc/db_artist_state.dart';
 import 'package:search_artists_app/features/history_trivia/presentation/widgets/widget_card.dart';
 
-DbRepository db = DbRepository();
-
-Widget getArtist() {
-  return FutureBuilder(
-    future: db.getAllArtist(),
-    builder: (BuildContext context, AsyncSnapshot snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
-        if (snapshot.data == null) {
-          return Center(child: Text('Not found information!'));
-        } else {
+class History extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DbArtistBloc, DbArtistState>(
+      builder: (context, state) {
+        if (state is Empty) {
+          return Center(child: Text('No data'));
+        }
+        if (state is Loading) {
+          return Center(child: CircularProgressIndicator());
+        }
+        if (state is Loaded) {
           return ListView.builder(
-            itemCount: snapshot.data.length,
-            itemBuilder: (context, i) {
-              return Column(
+            itemCount: state.list.length,
+            itemBuilder: (context, index) => Container(
+              child: Column(
                 children: [
-                  WidgetCard(snapshot.data[i].type.toString(),
-                      snapshot.data[i].name.toString())
+                  WidgetCard(state.list[index].type.toString(),
+                      state.list[index].name.toString())
                 ],
-              );
-            },
+              ),
+            ),
           );
         }
-      } else if (snapshot.connectionState == ConnectionState.none) {
-        return Center(child: Text('Error')); // error
-      } else {
-        return CircularProgressIndicator(); // loading
-      }
-    },
-  );
+
+        if (state is Error) {
+          return Center(
+            child: Text('Error', style: TextStyle(fontSize: 20.0)),
+          );
+        }
+        return Container();
+      },
+    );
+  }
 }

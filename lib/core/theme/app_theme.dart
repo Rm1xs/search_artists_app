@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:search_artists_app/features/artist_trivia/presentation/pages/artist_page.dart';
 
-class AppTheme extends StatelessWidget {
-  const AppTheme({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Artist Search',
-      theme: ThemeData(
-        primaryColor: Colors.blueAccent,
-        accentColor: Colors.lightBlueAccent,
+class CustomTheme {
+  static ThemeData get lightTheme {
+    return ThemeData(
+      primaryColor: Colors.blueAccent,
+      scaffoldBackgroundColor: Colors.white,
+      fontFamily: 'Montserrat',
+      buttonTheme: ButtonThemeData(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+        buttonColor: Colors.lightBlueAccent,
       ),
-      home: ArtistPage(),
     );
   }
 }

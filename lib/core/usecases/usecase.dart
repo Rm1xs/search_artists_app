@@ -6,6 +6,7 @@ import 'package:search_artists_app/features/artist_trivia/domain/entities/info.d
 abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);
 }
+
 abstract class DbUseCase<Artist> {
   void add(Info params);
 

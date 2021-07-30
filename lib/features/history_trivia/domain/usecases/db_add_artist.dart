@@ -19,7 +19,7 @@ class DbAddArtist implements DbUseCase<Info> {
   }
 
   @override
-  Future getArtist() async {
-    repository.getAllArtist();
+  Future<List<Info>> getArtist() async {
+    return await repository.getAllArtist();
   }
 }

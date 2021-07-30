@@ -18,13 +18,14 @@ class ArtistDisplay extends StatelessWidget {
           Expanded(
             child: Center(
               child: ListView.builder(
-                  itemCount: artist.similar.results.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(artist.similar.results[index].name),
-                      subtitle: Text(artist.similar.results[index].type),
-                    );
-                  }),
+                itemCount: artist.similar.results.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(artist.similar.results[index].name),
+                    subtitle: Text(artist.similar.results[index].type),
+                  );
+                },
+              ),
             ),
           ),
         ],

@@ -12,7 +12,7 @@ class InputConverter {
     }
   }
 
-  Either<Failure, Artist> checkDb(Artist str){
+  Either<Failure, Artist> checkDb(Artist str) {
     try {
       if (str.similar.info.isNotEmpty) throw FormatException();
       return Right(str);
@@ -21,4 +21,5 @@ class InputConverter {
     }
   }
 }
+
 class InvalidInputFailure extends Failure {}

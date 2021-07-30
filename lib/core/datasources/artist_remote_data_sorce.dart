@@ -1,8 +1,8 @@
 import 'dart:convert';
+import 'package:search_artists_app/core/datasources/db_artist_data_source.dart';
 import 'package:search_artists_app/core/error/exeptions.dart';
 import 'package:http/http.dart' as http;
 import 'package:search_artists_app/features/artist_trivia/data/models/artists.dart';
-import 'package:search_artists_app/features/history_trivia/presentation/bloc/artist_db_block.dart';
 
 abstract class ArtistRemoteDataSource {
   Future<ArtistModel> getArtist(String name);
@@ -13,7 +13,7 @@ class ArtistRemoteDataSourceImpl implements ArtistRemoteDataSource {
 
   ArtistRemoteDataSourceImpl(this.client);
 
-  final ArtistDbBloc artBloc = ArtistDbBloc();
+  final DbArtistDataSourceImpl artBloc = DbArtistDataSourceImpl();
 
   @override
   Future<ArtistModel> getArtist(String url) =>
@@ -28,14 +28,10 @@ class ArtistRemoteDataSourceImpl implements ArtistRemoteDataSource {
     );
     if (response.statusCode == 200) {
       ArtistModel data = ArtistModel.fromJson(json.decode(response.body));
-
-      artBloc.deleteAll();
+      artBloc.deleteAllArtist();
       data.similar.results.forEach((val) {
         artBloc.addArtist(val);
       });
-
-      //var t = artBloc.getArtist();
-
       return data;
     } else {
       throw ServerException();
