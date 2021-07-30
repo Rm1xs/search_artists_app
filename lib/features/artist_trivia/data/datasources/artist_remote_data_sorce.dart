@@ -21,7 +21,7 @@ class ArtistRemoteDataSourceImpl implements ArtistRemoteDataSource {
 
   Future<ArtistModel> _getFromUrl(String url) async {
     final http.Response response = await client.get(
-      url,
+      Uri.parse(url),
       headers: {
         'Content-Type': 'application/json',
       },

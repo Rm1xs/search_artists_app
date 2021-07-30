@@ -5,7 +5,6 @@ import 'package:search_artists_app/features/artist_trivia/presentation/widgets/w
 import 'package:search_artists_app/features/history_trivia/presentation/pages/artist_db_page.dart';
 import 'package:search_artists_app/injection_container.dart';
 
-
 class ArtistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -34,6 +33,7 @@ class ArtistPage extends StatelessWidget {
       ),
     );
   }
+
   //final ArtistDbBloc artistDbBloc = ArtistDbBloc();
   BlocProvider<ArtistBloc> buildBody(BuildContext context) {
     return BlocProvider(
@@ -49,18 +49,17 @@ class ArtistPage extends StatelessWidget {
                 builder: (context, state) {
                   if (state is Empty) {
                     return MessageDisplay(
-                      message: '',
+                      message: 'Enter author name',
                     );
                   } else if (state is Loading) {
                     return LoadingWidget();
-                  } else if (state is Loaded) {
+                  } else if (state is Loaded &&
+                      state.artist.similar.info.length != 2) {
                     return ArtistDisplay(artist: state.artist);
                   } else if (state is Error) {
-                    return MessageDisplay(
-                      message: state.message,
-                    );
+                    return MessageDisplay(message: 'Error');
                   }
-                  return MessageDisplay(message: 'Error');
+                  return MessageDisplay(message: 'No found similar');
                 },
               ),
             ],

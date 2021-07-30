@@ -10,7 +10,7 @@ Widget getArtist() {
     builder: (BuildContext context, AsyncSnapshot snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         if (snapshot.data == null) {
-          return Text('Not found information!');
+          return Center(child: Text('Not found information!'));
         } else {
           return ListView.builder(
             itemCount: snapshot.data.length,
@@ -25,7 +25,7 @@ Widget getArtist() {
           );
         }
       } else if (snapshot.connectionState == ConnectionState.none) {
-        return Text('Error'); // error
+        return Center(child: Text('Error')); // error
       } else {
         return CircularProgressIndicator(); // loading
       }

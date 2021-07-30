@@ -18,14 +18,12 @@ class ArtistModel extends Artist {
         similarModel: SimilarModel.fromJson(json["Similar"]),
       );
 
-  Map<String, dynamic> toJson() => {
-        "Similar": similarModel.toJson(),
-      };
+  Map<String, dynamic> toJson() => {"Similar": similarModel.toJson(),};
 }
 
 enum Type { MUSIC }
 
-final EnumValues<Type> typeValues = EnumValues({"music": Type.MUSIC});
+final EnumValues<Type> typeValues = EnumValues({'music': Type.MUSIC});
 
 class EnumValues<T> {
   Map<String, T> map;
@@ -34,7 +32,7 @@ class EnumValues<T> {
   EnumValues(this.map);
 
   Map<T, String>? get reverse {
-    reverseMap = map.map((k, v) => new MapEntry(v, k));
+    reverseMap = map.map((k, v) => MapEntry(v, k));
 
     return reverseMap;
   }

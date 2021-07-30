@@ -1,4 +1,3 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:search_artists_app/core/platform/network_info.dart';
@@ -26,7 +25,7 @@ Future<void> init() async {
   // Repository
   sl.registerLazySingleton<ArtistRepository>(
     () => ArtistRepositoryImpl(
-      networkInfo: sl(),
+      //networkInfo: sl(),
       remoteDataSource: sl(),
     ),
   );
@@ -38,9 +37,9 @@ Future<void> init() async {
 
   //! Core
   sl.registerLazySingleton(() => InputConverter());
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  //sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   //! External
   sl.registerLazySingleton(() => Client());
-  sl.registerLazySingleton(() => DataConnectionChecker());
+  //sl.registerLazySingleton(() => DataConnectionChecker());
 }
