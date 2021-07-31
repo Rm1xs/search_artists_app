@@ -10,7 +10,7 @@ abstract class DbArtistDataSource {
   Future deleteAllArtist();
 }
 
-final dbProvider = DatabaseProvider.dbProvider;
+final dbProvider = DbProvider.dbProvider;
 
 class DbArtistDataSourceImpl implements DbArtistDataSource {
   addArtist(Info info) async {

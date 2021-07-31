@@ -3,6 +3,7 @@ import 'package:search_artists_app/core/datasources/db_artist_data_source.dart';
 import 'package:search_artists_app/core/error/exeptions.dart';
 import 'package:http/http.dart' as http;
 import 'package:search_artists_app/features/artist_trivia/data/models/artists.dart';
+import 'package:search_artists_app/features/artist_trivia/domain/entities/info.dart';
 
 abstract class ArtistRemoteDataSource {
   Future<ArtistModel> getArtist(String name);

@@ -21,9 +21,9 @@ class ArtistModel extends Artist {
   Map<String, dynamic> toJson() => {"Similar": similarModel.toJson(),};
 }
 
-enum Type { MUSIC }
+enum Type { MUSIC, ARTIST }
 
-final EnumValues<Type> typeValues = EnumValues({'music': Type.MUSIC});
+final EnumValues<Type> typeValues = EnumValues({'music': Type.MUSIC, 'artist': Type.ARTIST});
 
 class EnumValues<T> {
   Map<String, T> map;

@@ -3,8 +3,8 @@ import 'package:sqflite/sqflite.dart';
 
 const String tableName = 'artists';
 
-class DatabaseProvider {
-  static final DatabaseProvider dbProvider = DatabaseProvider();
+class DbProvider {
+  static final DbProvider dbProvider = DbProvider();
   Database? _database;
 
   Future<Database?> get database async {

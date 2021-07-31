@@ -7,7 +7,7 @@ abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);
 }
 
-abstract class DbUseCase<Artist> {
+abstract class DbUseCase<Type> {
   void add(Info params);
 
   Future getArtist();

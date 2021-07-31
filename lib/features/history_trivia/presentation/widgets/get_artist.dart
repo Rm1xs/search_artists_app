@@ -4,7 +4,7 @@ import 'package:search_artists_app/features/history_trivia/presentation/bloc/db_
 import 'package:search_artists_app/features/history_trivia/presentation/bloc/db_artist_state.dart';
 import 'package:search_artists_app/features/history_trivia/presentation/widgets/widget_card.dart';
 
-class History extends StatelessWidget {
+class GetArtist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DbArtistBloc, DbArtistState>(

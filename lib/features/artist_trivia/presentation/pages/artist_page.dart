@@ -20,7 +20,7 @@ class ArtistPage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HistoryPage()),
+                MaterialPageRoute(builder: (context) => DbArtistPage()),
               );
             },
           )
@@ -32,7 +32,6 @@ class ArtistPage extends StatelessWidget {
     );
   }
 
-  //final ArtistDbBloc artistDbBloc = ArtistDbBloc();
   BlocProvider<ArtistBloc> buildBody(BuildContext context) {
     return BlocProvider(
       create: (_) => sl<ArtistBloc>(),

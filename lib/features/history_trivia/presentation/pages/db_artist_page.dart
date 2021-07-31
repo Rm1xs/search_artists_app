@@ -5,15 +5,15 @@ import 'package:search_artists_app/features/history_trivia/presentation/widgets/
 
 import '../../../../injection_container.dart';
 
-class HistoryPage extends StatelessWidget {
+class DbArtistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<DbArtistBloc>(
-      create: (_) => hstr<DbArtistBloc>(),
+      create: (_) => history<DbArtistBloc>(),
       child: Scaffold(
         appBar: AppBar(title: Text('Last query')),
         body: Container(
-          child: History(),
+          child: GetArtist(),
         ),
       ),
     );

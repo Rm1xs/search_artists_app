@@ -14,7 +14,7 @@ import 'features/history_trivia/domain/usecases/db_add_artist.dart';
 import 'features/history_trivia/presentation/bloc/db_artist_bloc.dart';
 
 final sl = GetIt.instance;
-final hstr = GetIt.instance;
+final history = GetIt.instance;
 
 Future<void> init() async {
   sl.registerFactory(
@@ -24,27 +24,25 @@ Future<void> init() async {
     ),
   );
 
-  hstr.registerFactory(
+  history.registerFactory(
     () => DbArtistBloc(
-      getConcreteArtist: hstr(),
+      getConcreteArtist: history(),
     ),
   );
 
   // Use cases
   sl.registerLazySingleton(() => GetArtist(sl()));
-  hstr.registerLazySingleton(() => DbAddArtist(hstr()));
+  history.registerLazySingleton(() => DbAddArtist(history()));
 
   // Repository
   sl.registerLazySingleton<ArtistRepository>(
     () => ArtistRepositoryImpl(
-      //networkInfo: sl(),
       remoteDataSource: sl(),
     ),
   );
 
-  // Repository
-  hstr.registerLazySingleton<DbRepository>(
-    () => DbArtistRepositoryImpl(hstr()),
+  history.registerLazySingleton<DbRepository>(
+    () => DbArtistRepositoryImpl(history()),
   );
 
   // Data sources
@@ -52,16 +50,14 @@ Future<void> init() async {
     () => ArtistRemoteDataSourceImpl(sl()),
   );
 
-  hstr.registerLazySingleton<DbArtistDataSource>(
+  history.registerLazySingleton<DbArtistDataSource>(
     () => DbArtistDataSourceImpl(),
   );
 
   //! Core
   sl.registerLazySingleton(() => InputConverter());
-  //sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   //! External
   sl.registerLazySingleton(() => Client());
 
-  //sl.registerLazySingleton(() => DataConnectionChecker());
 }
